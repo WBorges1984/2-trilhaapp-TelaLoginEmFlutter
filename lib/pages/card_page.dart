@@ -31,7 +31,7 @@ class _CardPageState extends State<CardPage> {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           width: double.infinity,
           child: cardDetail == null
               ? LinearProgressIndicator()
