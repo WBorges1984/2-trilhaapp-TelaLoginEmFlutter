@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:trilhaapp/pages/dados_cadastrais.dart';
+import 'package:trilhaapp/pages/configuracoes/configuracoes_hive_page.dart';
+import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive.dart';
 import 'package:trilhaapp/pages/login_pages.dart';
+import 'package:trilhaapp/pages/numeros_aleatorios/numeros_aleatorios_hive_page.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -24,15 +26,15 @@ class CustomDrawer extends StatelessWidget {
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          title: Text("Câmera"),
-                          leading: Icon(Icons.camera),
+                          title: const Text("Câmera"),
+                          leading: const Icon(Icons.camera),
                         ),
                         ListTile(
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          title: Text("Galeria"),
-                          leading: Icon(Icons.library_add_rounded),
+                          title: const Text("Galeria"),
+                          leading: const Icon(Icons.library_add_rounded),
                         ),
                       ],
                     );
@@ -67,7 +69,7 @@ class CustomDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const DadosCadastraisPage()));
+                      builder: (context) => const DadosCadastraisHivePage()));
             },
           ),
           const Divider(),
@@ -127,7 +129,37 @@ class CustomDrawer extends StatelessWidget {
                     Text("Configurações"),
                   ],
                 )),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (bc) => const ConfiguracoesHivePage()));
+            },
+          ),
+          const Divider(),
+          const Divider(),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: const Row(
+                  children: [
+                    Icon(Icons.numbers),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Gerador de Números"),
+                  ],
+                )),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (bc) => const NumerosAleatoriosHivePage()));
+            },
           ),
           const Divider(),
           const SizedBox(height: 10),

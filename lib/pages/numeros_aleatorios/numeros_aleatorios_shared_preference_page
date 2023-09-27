@@ -1,0 +1,68 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trilhaapp/services/app_storage_servise.dart';
+
+class NumerosAleatoriosSharedPreferencePage extends StatefulWidget {
+  const NumerosAleatoriosSharedPreferencePage({super.key});
+
+  @override
+  State<NumerosAleatoriosSharedPreferencePage> createState() =>
+      _NumerosAleatoriosSharedPreferencePageState();
+}
+
+class _NumerosAleatoriosSharedPreferencePageState
+    extends State<NumerosAleatoriosSharedPreferencePage> {
+  int numeroGerado = 0;
+  final CHAVE_NUMERO_ALEATORIO = "numero_aleatorio";
+  AppStorageService storage = AppStorageService();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    carregarDados();
+  }
+
+  void carregarDados() async {
+    numeroGerado = await storage.getNumeroaAleatorios();
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(title: const Text("Gerador Aleatorio")),
+        body: Container(
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                numeroGerado.toString(),
+                style: TextStyle(fontSize: 22),
+              )
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () async {
+            final store = await SharedPreferences.getInstance();
+            var random = Random();
+            setState(() {
+              numeroGerado = random.nextInt(1000);
+            });
+            storage.setNumeroaAleatorios(numeroGerado);
+
+            var numero = store.getInt("numero_aleatorio");
+            print(numero.toString());
+          },
+        ),
+      ),
+    );
+  }
+}
