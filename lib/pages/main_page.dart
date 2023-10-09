@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/pages/card_page.dart';
+import 'package:trilhaapp/pages/consulta_cep.dart';
 import 'package:trilhaapp/pages/images_assets.dart';
 import 'package:trilhaapp/pages/list_view_horizontal.dart';
 import 'package:trilhaapp/pages/list_view_v.dart';
-import 'package:trilhaapp/pages/tarefas_page/tarefa_hive_page.dart';
+import 'package:trilhaapp/pages/tarefas_page/tarefa_sqlite_page.dart';
 import 'package:trilhaapp/shared/widgets/custom_drawer.dart';
 
 class MainPage extends StatefulWidget {
@@ -33,11 +34,12 @@ class _MainPageState extends State<MainPage> {
                   });
                 },
                 children: const [
+                  ConsultaCep(),
                   CardPage(),
                   ImagesAssetsPage(),
                   listViewVPage(),
                   ListViewHorizontal(),
-                  TarefaPage(),
+                  TarefaSQLitePage(),
                 ],
               ),
             ),
@@ -48,6 +50,8 @@ class _MainPageState extends State<MainPage> {
                 },
                 currentIndex: posicaoPagina,
                 items: const [
+                  BottomNavigationBarItem(
+                      label: "Http", icon: Icon(Icons.network_check)),
                   BottomNavigationBarItem(
                       label: "Pag1", icon: Icon(Icons.home)),
                   BottomNavigationBarItem(label: "Pag2", icon: Icon(Icons.add)),

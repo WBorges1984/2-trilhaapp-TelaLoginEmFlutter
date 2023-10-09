@@ -1,0 +1,18 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import 'package:trilhaapp/model/comment_model.dart';
+
+class CommentRepository {
+  Future<List<CommentModel>> retornaComentarios(int postId) async {
+    var response = await http.get(Uri.parse(
+        "https://jsonplaceholder.typicode.com/comments?postId=$postId"));
+    if (response.statusCode == 200) {
+      var jsonComments = jsonDecode(response.body);
+      return (jsonComments as List)
+          .map((e) => CommentModel.fromJson(e))
+          .toList();
+    }
+    return [];
+  }
+}
