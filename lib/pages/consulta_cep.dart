@@ -21,7 +21,7 @@ class _ConsultaCepState extends State<ConsultaCep> {
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add), onPressed: () async {}),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Column(
           children: [
             const Text("Consulta CEP",
